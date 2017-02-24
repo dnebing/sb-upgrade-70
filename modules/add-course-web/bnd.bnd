@@ -2,9 +2,3 @@ Bundle-Name: add-course-web
 Bundle-SymbolicName: com.liferay.school.addcourse
 Bundle-Version: 1.0.0
 
-Bundle-ClassPath:\
-  .,\
-  lib/school-portlet-service.jar
-
--includeresource:\
-  lib/school-portlet-service.jar=school-portlet-service.jar

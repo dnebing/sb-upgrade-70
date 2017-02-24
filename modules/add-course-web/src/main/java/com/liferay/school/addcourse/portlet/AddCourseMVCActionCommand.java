@@ -4,13 +4,14 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.school.service.CourseLocalServiceUtil;
+import com.liferay.school.service.CourseLocalService;
 
 @Component(
 		immediate = true,
@@ -36,12 +37,19 @@ public class AddCourseMVCActionCommand extends BaseMVCActionCommand {
 				String department = ParamUtil.getString(actionRequest, "department");
 				int level = ParamUtil.getInteger(actionRequest, "level");
 				
-				CourseLocalServiceUtil.addCourse(courseCode, name, description, level, department, null);
+				_courseLocalService.addCourse(courseCode, name, description, level, department, null);
 			}
 
 			if (Validator.isNotNull(cmd)) {
 				sendRedirect(actionRequest, actionResponse);
 			}
 	}
+
+	@Reference(unbind = "-")
+	protected void setCourseLocalService(final CourseLocalService courseLocalService) {
+		_courseLocalService = courseLocalService;
+	}
+	
+	private CourseLocalService _courseLocalService;
 
 }

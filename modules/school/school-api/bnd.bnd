@@ -1,0 +1,9 @@
+Bundle-Name: school-api
+Bundle-SymbolicName: com.liferay.school.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.school.exception,\
+	com.liferay.school.model,\
+	com.liferay.school.service,\
+	com.liferay.school.service.persistence
+-includeresource: META-INF/service.xml=../school-service/service.xml
